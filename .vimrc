@@ -81,6 +81,10 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" Switch default register for copying/deleting etc
+" from unnamed to system's clipboard
+set clipboard=unnamedplus
+
 
 "------------------------------------------------------------
 " Mappings
@@ -118,7 +122,6 @@ let g:clang_auto_select=1
 let g:clang_complete_auto=1
 let g:clang_complete_copen=1
 let g_clang_hl_errors=1
-let g:clang_periodic_quickfix=1
 let g:clang_snippets=1
 let g:clang_snippets_engine="clang_complete"
 let g:clang_conceal_snippets=1
@@ -131,6 +134,10 @@ let g:clang_complete_patterns=1
 "                         COLOR SCHEMES
 set runtimepath+=~/.vim/bundle/colorschemes
 colorscheme badwolf
+
+"                         MARKDOWN-PREVIEW
+" set runtimepath+=~/.vim/bundle/markdown-preview
+
 
 "------------------------------------------------------------
 " Macros
