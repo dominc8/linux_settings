@@ -75,4 +75,4 @@ endfunction
 :nnoremap <buffer> <leader>i          :call InsertIncludeGuards()<CR>
 :nnoremap <buffer> <leader>k          :call CommentNLines(input(''))<CR>
 :nnoremap <buffer> <leader><C-k>      :call CommentBlockNLines(input(''))<CR>
-
+:cnoremap <buffer> W w<CR>:!g++ % -o %:r<CR>

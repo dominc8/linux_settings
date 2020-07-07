@@ -5,47 +5,30 @@
 "   \_/   |_| |_| |_| |_| |_|     \___|
 "
 "
-"
-"
-set nocompatible 
-filetype plugin indent on
+
+call plug#begin('~/.config/nvim/plugged')
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdtree'
+Plug 'flazz/vim-colorschemes'
+call plug#end()
+
+colorscheme gruvbox
+set background=dark
+
 syntax on
 
 " Allows you to re-use the same window and switch from an unsaved buffer without saving it first. 
 " Also allows you to keep an undo history for multiple files when re-using the same window
 set hidden
 
-" Better command-line completion
-set wildmenu
-
-" Show partial commands in the last line of the screen
-set showcmd
-
-" Highlight searches 
-set hlsearch
-
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
 
-" Allow backspacing over autoindent, line breaks and start of insert action
-set backspace=indent,eol,start
-
-" When opening a new line and no filetype-specific indenting is enabled, keep
-" the same indent as the line you're currently on. Useful for READMEs, etc.
-set autoindent
-
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
-set nostartofline
-
-" Display the cursor position on the last line of the screen or in the status
-" line of a window
-set ruler
-
-" Always display the status line, even if only one window is displayed
-set laststatus=2
+" set nostartofline
 
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
@@ -71,7 +54,7 @@ set number relativenumber
 set notimeout ttimeout ttimeoutlen=200
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
+" set pastetoggle=<F11>
 
 " Splitting vim creates new window on the right/bottom
 set splitbelow splitright
@@ -80,11 +63,6 @@ set splitbelow splitright
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
-" Switch default register for copying/deleting etc
-" from unnamed to system's clipboard
-set clipboard=unnamedplus
-
 
 "------------------------------------------------------------
 " Mappings
@@ -102,42 +80,13 @@ map <C-l> <C-w>l
 " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
 nnoremap <C-L> :nohl<CR><C-L>
 
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 "------------------------------------------------------------
 " FileType Mappings
 "------------------------------------------------------------
-" **** Moved to files in ~/.vim/ftplugin/<filetype>.vim ****
-
-
-"------------------------------------------------------------
-" Plugins
-"------------------------------------------------------------
-
-"                          NERDTREE
-set runtimepath+=~/.vim/bundle/nerdtree
-
-"                          CLANG_COMPLETE
-set runtimepath+=~/.vim/bundle/clang_complete
-let g:clang_library_path='/usr/lib/libclang.so'
-let g:clang_auto_select=1
-let g:clang_complete_auto=1
-let g:clang_complete_copen=1
-let g_clang_hl_errors=1
-let g:clang_snippets=1
-let g:clang_snippets_engine="clang_complete"
-let g:clang_conceal_snippets=1
-let g:clang_complete_optional_args_in_snippets=1
-let g:clang_trailing_placeholder=1
-let g:clang_close_preview=1
-let g_clang_complete_macros=1
-let g:clang_complete_patterns=1
-
-"                         COLOR SCHEMES
-set runtimepath+=~/.vim/bundle/colorschemes
-colorscheme badwolf
-
-"                         MARKDOWN-PREVIEW
-" set runtimepath+=~/.vim/bundle/markdown-preview
-
+" **** Moved to files in ~/.config//nvim/ftplugin/<filetype>.vim ****
 
 "------------------------------------------------------------
 " Macros
@@ -147,5 +96,5 @@ colorscheme badwolf
 let @f = "/^\\(\\(.*.*\\)\\@!.\\)*$\<Left>\<Left>\<Left>\<Left>\<Left>\<Left>\<Left>\<Left>\<Left>\<Left>\<Left>\<Left>"
 
 
-
 "------------------------------------------------------------
+

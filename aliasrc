@@ -1,0 +1,16 @@
+# -g option is zsh specific
+
+alias ls='ls --color=auto'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -g agh='~/Documents/AGH2/1sem'
+alias -g emc='~/Documents/AGH2/1sem/EMC'
+alias -g ezwk='~/Documents/AGH2/1sem/EZWK'
+alias -g nk='~/Documents/AGH2/1sem/NKWRWZMWIO'
+alias -g tin='~/Documents/AGH2/1sem/TIN'
+alias -g tsif='~/Documents/AGH2/1sem/TSIF'
+alias -g sdup='~/Documents/AGH2/1sem/SDUP'
+alias -g swaw='~/Documents/AGH2/1sem/SWAW'

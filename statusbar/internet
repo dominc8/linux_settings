@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ $(cat /sys/class/net/enp2s0/carrier) = '1' ]; then
+    ICON='\U0001F310'
+    LEVEL=''
+elif [ $(cat /sys/class/net/wlp3s0/carrier) = '1' ]; then
+    ICON='\U0001F4F6'
+    LEVEL="$(awk 'NR==3 { x=$3 * 10 / 7; print int(x) }' /proc/net/wireless)%"
+else
+    ICON=''
+fi
+
+echo -e "${ICON}${LEVEL}"
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+transmission-remote -a "$@" && notify-send "Transmission daemon" "Torrent added"
+

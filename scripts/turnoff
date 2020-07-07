@@ -1,0 +1,14 @@
+#!/bin/sh
+OPTION=$(echo -e "Cancel\nTurn off\nReboot" | dmenu -p "Action:")
+
+case $OPTION in
+    "Turn off")
+        poweroff
+        ;;
+    "Reboot")
+        reboot
+        ;;
+    **)
+        ;;
+esac
+

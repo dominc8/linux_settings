@@ -1,0 +1,12 @@
+#!/bin/sh
+
+BATT_PERC="$(acpi --battery | awk '{printf $4}' | tr -d ,)"
+
+if $(acpi --ac-adapter | grep -q 'on-line'); then
+    BATT_AC='\U0001F50C'
+else
+    BATT_AC='\U0001F50B'
+fi
+
+echo -e "${BATT_AC}${BATT_PERC}"
+

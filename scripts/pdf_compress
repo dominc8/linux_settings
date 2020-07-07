@@ -1,0 +1,14 @@
+#!/bin/sh
+
+for arg in "$@"; do
+    if [ -f "$arg" ]; then
+        echo "Moving file $arg to $arg.bk and compressing it back to $arg"
+        mv "$arg" "$arg.bk" && pdf2ps "$arg.bk" tempfile.ps && ps2pdf tempfile.ps "$arg"
+    elif [ -d "$arg" ]; then
+        echo "Recursive compression in folder $arg"
+        $0 "${arg}"/*
+    else
+        echo "$arg is not a folder nor a file"
+    fi
+done
+
