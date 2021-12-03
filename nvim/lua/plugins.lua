@@ -23,6 +23,7 @@ return require('packer').startup(function()
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use 'nvim-telescope/telescope-project.nvim'
 
     use 'neovim/nvim-lspconfig'
     use 'ms-jpq/coq_nvim'

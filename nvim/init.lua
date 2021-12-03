@@ -8,6 +8,7 @@
 
 --- Useful for debugging
 --- vim.lsp.set_log_level('trace')
+vim.g.mapleader = " "
 
 require 'plugins'
 require 'conf'
@@ -16,7 +17,6 @@ vim.cmd 'colorscheme gruvbox'
 --- Breaks diagnostic
 --- vim.cmd 'syntax on'
 
-vim.g.mapleader = " "
 
 vim.opt.background = 'dark'
 vim.opt.number = true
@@ -54,12 +54,6 @@ vim.opt.completeopt = 'menuone,noinsert,noselect'
 -------------------------------------------------------------
 mapk = vim.api.nvim_set_keymap
 local opts = { noremap = true }
-
---- Better moving between splitted windows
-mapk('n', '<C-h>', '<C-w>h', opts)
-mapk('n', '<C-j>', '<C-w>j', opts)
-mapk('n', '<C-k>', '<C-w>k', opts)
-mapk('n', '<C-l>', '<C-w>l', opts)
 
 --- Move around visually selected lines
 mapk('v', 'J', ':m \'>+1<CR>gv=gv', opts)

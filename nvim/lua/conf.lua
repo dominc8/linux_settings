@@ -13,20 +13,20 @@ local coq = require('coq')
 
 local on_attach = function(_, bufnr)
   local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()                                 <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()                                 <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()                                  <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>K',  '<cmd>lua vim.lsp.buf.hover()                                       <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()                              <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()                              <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()                             <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.rename()                                      <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gR', '<cmd>lua vim.lsp.buf.references()                                  <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>g?', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()                <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gw', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))  <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gq', '<cmd>lua vim.lsp.diagnostic.set_loclist()                          <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>[', '<cmd>lua vim.lsp.diagnostic.goto_prev()                            <CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>]', '<cmd>lua vim.lsp.diagnostic.goto_next()                            <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()                                 <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()                                 <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()                                  <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()                                       <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()                              <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()                              <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()                             <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()                                      <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lR', '<cmd>lua vim.lsp.buf.references()                                  <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>l?', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()                <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lw', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))  <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lq', '<cmd>lua vim.lsp.diagnostic.set_loclist()                          <CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>l[', '<cmd>lua vim.lsp.diagnostic.goto_prev()                            <CR>', opts) 
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>l]', '<cmd>lua vim.lsp.diagnostic.goto_next()                            <CR>', opts)
 end
 
 lsp.clangd.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
@@ -38,7 +38,9 @@ lsp.clangd.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
 --- vim.g.completion_matching_smart_case = 1
 --- vim.g.completion_trigger_on_delete = 1
 
-require('telescope').setup {
+local tele = require('telescope')
+
+tele.setup {
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
@@ -49,5 +51,15 @@ require('telescope').setup {
     }
   }
 }
-require('telescope').load_extension('fzf')
+tele.load_extension('fzf')
+tele.load_extension('project')
 
+local opts = { noremap = true }
+mapk = vim.api.nvim_set_keymap
+
+mapk('n', '<leader>tt',  "<cmd>Telescope<CR>", opts)
+mapk('n', '<leader>tb',  "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
+mapk('n', '<leader>tgb', "<cmd>lua require('telescope.builtin').git_branches()<CR>", opts)
+mapk('n', '<leader>tgc', "<cmd>lua require('telescope.builtin').git_commits()<CR>", opts)
+mapk('n', '<leader>tgs', "<cmd>lua require('telescope.builtin').git_status()<CR>", opts)
+mapk('n', '<leader>tp',  "<cmd>lua require('telescope').extensions.project.project{}<CR>", opts)
