@@ -30,6 +30,7 @@ local on_attach = function(_, bufnr)
 end
 
 lsp.clangd.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
+lsp.jedi_language_server.setup{ on_attach = on_attach }
 
 --- vim.lsp.diagnostic_virtual_text_prefix = ''
 --- vim.lsp.diagnostic_enable_virtual_text = 1
@@ -58,8 +59,10 @@ local opts = { noremap = true }
 mapk = vim.api.nvim_set_keymap
 
 mapk('n', '<leader>tt',  "<cmd>Telescope<CR>", opts)
-mapk('n', '<leader>tb',  "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
-mapk('n', '<leader>tgb', "<cmd>lua require('telescope.builtin').git_branches()<CR>", opts)
-mapk('n', '<leader>tgc', "<cmd>lua require('telescope.builtin').git_commits()<CR>", opts)
-mapk('n', '<leader>tgs', "<cmd>lua require('telescope.builtin').git_status()<CR>", opts)
-mapk('n', '<leader>tp',  "<cmd>lua require('telescope').extensions.project.project{}<CR>", opts)
+mapk('n', '<leader>tf',  "<cmd>Telescope find_files<CR>", opts)
+mapk('n', '<leader>th',  "<cmd>Telescope find_files hidden=true<CR>", opts)
+mapk('n', '<leader>tb',  "<cmd>Telescope buffers<CR>", opts)
+mapk('n', '<leader>tgb', "<cmd>Telescope git_branches<CR>", opts)
+mapk('n', '<leader>tgc', "<cmd>Telescope git_commits<CR>", opts)
+mapk('n', '<leader>tgs', "<cmd>Telescope git_status<CR>", opts)
+mapk('n', '<leader>tp',  "<cmd>Telescope project<CR>", opts)

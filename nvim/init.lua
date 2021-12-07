@@ -48,6 +48,7 @@ vim.opt.colorcolumn = '80'
 vim.opt.signcolumn = 'number'
 vim.opt.termguicolors = true
 vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.inccommand = 'split'
 
 -------------------------------------------------------------
 --- Mappings

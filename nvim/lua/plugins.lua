@@ -27,6 +27,7 @@ return require('packer').startup(function()
 
     use 'neovim/nvim-lspconfig'
     use 'ms-jpq/coq_nvim'
+    use 'ms-jpq/coq.artifacts'
 
     ------ use 'editorconfig/editorconfig-vim' --- setting coding std in file and make nvim adjust code to it? seems cool
     ------ use 'mhinz/vim-signify' --- showing vcs info, todo check if vim fugitive already doesn't do it and which is better
