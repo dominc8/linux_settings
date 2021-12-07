@@ -10,7 +10,6 @@
 return require('packer').startup(function()
     use 'morhetz/gruvbox'
 
-    use '9mm/vim-closer'
     use 'tpope/vim-commentary'  --- gcc, gc<motion>
     use 'machakann/vim-sandwich' --- sa<motion><addition>, sd<deletion>, sr<deletion><addition>
     use 'romainl/vim-cool' --- automatic set nohlsearch
