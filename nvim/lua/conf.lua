@@ -31,6 +31,7 @@ end
 
 lsp.clangd.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
 lsp.jedi_language_server.setup{ on_attach = on_attach }
+lsp.gopls.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
 
 --- vim.lsp.diagnostic_virtual_text_prefix = ''
 --- vim.lsp.diagnostic_enable_virtual_text = 1
@@ -40,29 +41,44 @@ lsp.jedi_language_server.setup{ on_attach = on_attach }
 --- vim.g.completion_trigger_on_delete = 1
 
 local tele = require('telescope')
+local action_layout = require('telescope.actions.layout')
 
 tele.setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
+    defaults = {
+        mappings = {
+            n = {
+                ["<M-o>"] = action_layout.toggle_preview
+            },
+            i = {
+                ["<M-o>"] = action_layout.toggle_preview
+            }
+        }
+    },
+    extensions = {
+        fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                             -- the default case_mode is "smart_case"
+        }
     }
-  }
 }
 tele.load_extension('fzf')
 tele.load_extension('project')
 
+require('Comment').setup()
+
 local opts = { noremap = true }
 mapk = vim.api.nvim_set_keymap
 
-mapk('n', '<leader>tt',  "<cmd>Telescope<CR>", opts)
-mapk('n', '<leader>tf',  "<cmd>Telescope find_files<CR>", opts)
-mapk('n', '<leader>th',  "<cmd>Telescope find_files hidden=true<CR>", opts)
-mapk('n', '<leader>tb',  "<cmd>Telescope buffers<CR>", opts)
-mapk('n', '<leader>tgb', "<cmd>Telescope git_branches<CR>", opts)
-mapk('n', '<leader>tgc', "<cmd>Telescope git_commits<CR>", opts)
-mapk('n', '<leader>tgs', "<cmd>Telescope git_status<CR>", opts)
-mapk('n', '<leader>tp',  "<cmd>Telescope project<CR>", opts)
+mapk('n', '<leader>tt', "<cmd>Telescope<CR>", opts)
+mapk('n', '<leader>tf', "<cmd>Telescope find_files<CR>", opts)
+mapk('n', '<leader>th', "<cmd>Telescope find_files hidden=true<CR>", opts)
+mapk('n', '<leader>tg', "<cmd>Telescope live_grep<CR>", opts)
+mapk('n', '<leader>tb', "<cmd>Telescope buffers<CR>", opts)
+mapk('n', '<leader>gb', "<cmd>Telescope git_branches<CR>", opts)
+mapk('n', '<leader>gc', "<cmd>Telescope git_commits<CR>", opts)
+mapk('n', '<leader>gs', "<cmd>Telescope git_status<CR>", opts)
+mapk('n', '<leader>tp', "<cmd>Telescope project<CR>", opts)
+mapk('n', '<leader>tr', "<cmd>Telescope resume<CR>", opts)

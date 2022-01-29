@@ -10,7 +10,7 @@
 return require('packer').startup(function()
     use 'gruvbox-community/gruvbox'
 
-    use 'tpope/vim-commentary'  --- gcc, gc<motion>
+    use 'numToStr/Comment.nvim'
     use 'machakann/vim-sandwich' --- sa<motion><addition>, sd<deletion>, sr<deletion><addition>
     use 'romainl/vim-cool' --- automatic set nohlsearch
 

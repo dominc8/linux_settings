@@ -60,3 +60,10 @@ local opts = { noremap = true }
 mapk('v', 'J', ':m \'>+1<CR>gv=gv', opts)
 mapk('v', 'K', ':m \'<-2<CR>gv=gv', opts)
 
+--- Move in quickfix list
+mapk('n', '<C-j>', ':cnext<CR>', opts)
+mapk('n', '<C-k>', ':cprevious<CR>', opts)
+
+--- Move in location list
+mapk('n', '[j', ':lnext<CR>', opts)
+mapk('n', '[k', ':lprevious<CR>', opts)
