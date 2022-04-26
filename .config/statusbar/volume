@@ -14,5 +14,5 @@ case "${SOUNDMASTER}" in
     ;;
 esac
 
-echo -e "${ICON}${VOLUME}"
+env printf "${ICON}${VOLUME}"
 

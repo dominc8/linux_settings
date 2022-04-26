@@ -1,0 +1,16 @@
+#!/bin/sh
+langs="assembly\nbash\nc\ncpp\ngo\nlatex\ncmake\ngit\nrust"
+other="xargs\nfind\nsed\nawk\ngrep\ntr\ncut"
+
+selected="$(printf "${langs}\n${other}\nmanual" | fzf)"
+read -p "query: " query
+query="$(echo "${query}" | tr ' ' '+')"
+
+if [ "$selected" = "manual" ]; then
+    curl "cht.sh/${query}"
+elif printf "${langs}" | grep -qs "${selected}"; then
+    curl "cht.sh/${selected}/${query}"
+else 
+    curl "cht.sh/${selected}~${query}"
+fi
+

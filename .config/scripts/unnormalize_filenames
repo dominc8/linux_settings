@@ -1,0 +1,16 @@
+#!/bin/sh
+
+for arg in "$@"; do
+    if [ -f "$arg" ]; then
+        echo "Renaming file $arg"
+        echo "$arg" | sed "s/\_/ /g" | xargs -I{} mv "$arg" {}
+    elif [ -d "$arg" ]; then
+        echo "Renaming folder $arg"
+        echo "$arg" | sed "s/\_/ /g" | xargs -I{} mv "$arg" {}
+        arg=$(echo "$arg" | sed "s/\_/ /g")
+        $0 "${arg}"/*
+    else
+        echo "$arg is not a folder nor a file"
+    fi
+done
+

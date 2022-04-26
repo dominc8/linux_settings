@@ -1,4 +1,4 @@
-export PATH="$PATH:/home/dominik/.config/scripts"
+export PATH="$PATH:/home/dominik/.local/bin:/home/dominik/.config/scripts"
 
 # Vivado (java) fix
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -72,21 +72,22 @@ echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 
 # Use lf to switch directories and bind it to ctrl-o
-#lfcd () {
-    #tmp="$(mktemp)"
-    #lf -last-dir-path="$tmp" "$@"
-    #if [ -f "$tmp" ]; then
-        #dir="$(cat "$tmp")"
-        #rm -f "$tmp"
-        #if [ -d "$dir" ]; then
-            #if [ "$dir" != "$(pwd)" ]; then
-                #cd "$dir"
-            #fi
-        #fi
-    #fi
-#}
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
 
-#bindkey -s '^o' 'lfcd\n'  # zsh
+bindkey -s '^o' 'lfcd\n'  # zsh
+
 zstyle ':vcs_info:git*' formats '%F{32}%s%F{129}@%F{200}%r %F{172}<%b>'
 zstyle ':vcs_info:svn*' formats '%F{32}%s%F{129}@%F{200}%r %F{172}<%b>'
 
@@ -95,5 +96,7 @@ RPROMPT='${vcs_info_msg_0_}'
 
 
 # Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.config/zsh/.fzf.zsh ] && source ~/.config/zsh/.fzf.zsh
 

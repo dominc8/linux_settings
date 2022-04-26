@@ -1,0 +1,45 @@
+#!/bin/sh
+
+DISP_RES=$(xrandr | sed -n '/eDP1 connected/{n;p}' | awk '{print $1}')
+HDMI_RES=$(xrandr | sed -n '/HDMI1 connected/{n;p}' | awk '{print $1}')
+
+HDMI_RIGHT='1'
+
+if [ ! -z "$HDMI_RES" ]; then
+
+    X_DISP=$(echo $DISP_RES | cut -d'x' -f1)
+    Y_DISP=$(echo $DISP_RES | cut -d'x' -f2)
+    X_HDMI=$(echo $HDMI_RES | cut -d'x' -f1)
+    Y_HDMI=$(echo $HDMI_RES | cut -d'x' -f2)
+
+    if [ "$Y_HDMI" -ge "$Y_DISP" ]; then
+        Y_CAT="$Y_HDMI"
+        DISP_Y_POS=$((Y_HDMI - Y_DISP))
+        HDMI_Y_POS='0'
+    else
+        Y_CAT="$Y_DISP"
+        DISP_Y_POS='0'
+        HDMI_Y_POS=$((Y_DISP - Y_HDMI))
+    fi
+
+    if [ "$HDMI_RIGHT" = '1' ]; then
+        DISP_X_POS='0'
+        HDMI_X_POS="$X_DISP"
+    else
+        DISP_X_POS="$X_HDMI"
+        HDMI_X_POS='0'
+    fi
+
+    X_CAT=$((X_DISP + X_HDMI))
+
+    RES_CAT="${X_CAT}x${Y_CAT}"
+    DISP_POS="${DISP_X_POS}x${DISP_Y_POS}"
+    HDMI_POS="${HDMI_X_POS}x${HDMI_Y_POS}"
+
+    xrandr --output HDMI1 --mode ${HDMI_RES} --fb ${RES_CAT} --scale 1x1 --pos ${HDMI_POS}
+    xrandr --output eDP1 --mode ${DISP_RES} --scale 1x1 --pos ${DISP_POS}
+    xwallpaper --no-randr --zoom .config/wallpaper.jpg
+
+fi
+
+xwallpaper --no-randr --zoom .config/wallpaper.jpg

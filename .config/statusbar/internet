@@ -10,5 +10,5 @@ else
     ICON=''
 fi
 
-echo -e "${ICON}${LEVEL}"
+env printf "${ICON}${LEVEL}"
 

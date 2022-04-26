@@ -1,5 +1,5 @@
 #!/bin/sh
-OPTION=$(echo -e "Cancel\nTurn off\nReboot" | dmenu -p "Action:")
+OPTION=$(printf "Cancel\nTurn off\nReboot\n" | dmenu -p "Action:")
 
 case $OPTION in
     "Turn off")

@@ -1,0 +1,19 @@
+# -g option is zsh specific
+
+alias ls='ls --color=auto'
+alias sl='ls'
+alias vim='nvim'
+alias nf='nvim $(fzf)'
+alias lf='lfub'
+alias hexconv='hexdump -ve '"'"'1/1 "%02x, "'"'"
+
+alias -s c=nvim
+alias -s h=nvim
+alias -s cpp=nvim
+alias -s hpp=nvim
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+

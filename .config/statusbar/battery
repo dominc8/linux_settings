@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#BATT_PERC="$(acpi --battery | grep -v 'unavailable' | cut -d ' ' -f 4 | tr -d ',')"
+BATT_PERC="$(cat /sys/class/power_supply/BAT?/capacity)"
+
+
+#if $(acpi --ac-adapter | grep -q 'on-line'); then
+if [ $(cat /sys/class/power_supply/ADP?/online) -eq 1 ]; then
+    BATT_AC='\U0001F50C'
+else
+    BATT_AC='\U0001F50B'
+fi
+
+env printf "${BATT_AC}${BATT_PERC}%"

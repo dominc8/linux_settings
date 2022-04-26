@@ -1,0 +1,19 @@
+[user]
+    name = dominc8
+    email = kormandominik@gmail.com
+[core]
+    editor = nvim
+[alias]
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+    dfn = diff --name-status
+    dfna = diff --name-status --diff-filter=A
+    dfnd = diff --name-status --diff-filter=D
+    dfnm = diff --name-status --diff-filter=M
+[pull]
+    ff = only
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""

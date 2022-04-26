@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ $(cat /sys/class/power_supply/ADP?/online) -eq 0 ]; then
+    BATT_PERC="$(cat /sys/class/power_supply/BAT?/capacity)"
+    if [ $BATT_PERC -lt 10 ]; then
+        /usr/bin/notify-send -u critical 'BATTERY LEVEL' "${BATT_PERC}% is really low"
+    elif [ $BATT_PERC -lt 20 ]; then
+        /usr/bin/notify-send 'BATTERY LEVEL' "${BATT_PERC}% is pretty low"
+    fi
+fi
+

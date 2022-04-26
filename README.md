@@ -1,1 +1,1 @@
-# Config files for vim, zsh etc.
+# Config files for nvim, zsh etc.

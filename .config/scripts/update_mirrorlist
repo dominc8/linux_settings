@@ -1,0 +1,7 @@
+#!/bin/sh
+ENV_SETUP='DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus'
+
+sudo -u dominik ${ENV_SETUP} /usr/bin/notify-send 'Pacman mirrorlist' 'Started updating mirrorlist'
+/usr/bin/reflector --sort rate --save /etc/pacman.d/mirrorlist --download-timeout 3 -a 6
+sudo -u dominik ${ENV_SETUP} /usr/bin/notify-send 'Pacman mirrorlist' 'Finished updating mirrorlist'
+
