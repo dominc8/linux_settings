@@ -79,5 +79,6 @@ ex=🎯:\
 *.jar=♨:\
 *.java=♨:\
 "
+[ -d "$HOME/adb-fastboot/platform-tools" ] && export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx

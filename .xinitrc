@@ -33,11 +33,13 @@ fi
 #fi
 
 xset -b                                     # Turn off beep
+xset s off -dpms                            # Turn off DPMS and screen blanking
 /home/dominik/.config/scripts/xconfig
 xcompmgr &                                  # Composite manager needed for transparency etc.
 dwmblocks &                                 # Status bar
 sct 3000
 #safeeyes &                                 # Eyestrain preventing software
 systemctl --user import-environment DISPLAY # For dunst
+xbindkeys
 exec dwm                                    # Windows manager
 

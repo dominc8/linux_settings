@@ -1,6 +1,7 @@
 #!/bin/sh
 pkill wpa_supplicant
 pkill wpa_supplicant
+sleep 2
 wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
 dhcpcd wlp3s0
 
